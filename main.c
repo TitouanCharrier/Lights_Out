@@ -33,37 +33,8 @@ int main(int argc, char *argv[]) {
         CreateRectangle(renderer,1366/2,768/2,498,498,100,0,0,255,0);
         CreateRectangle(renderer,1366/2,768/2,502,502,100,0,0,255,0);
 
-	Case Case1_1;
-	Case Case1_2;	
-	Case Case1_3;	
-	Case Case1_4;	
-	Case Case1_5;	
-	Case Case2_1;	
-	Case Case2_2;	
-	Case Case2_3;	
-	Case Case2_4;	
-	Case Case2_5;	
-	Case Case3_1;	
-	Case Case3_2;
-	Case Case3_3;	
-	Case Case3_4;	
-	Case Case3_5;	
-	Case Case4_1;	
-	Case Case4_2;	
-	Case Case4_3;	
-	Case Case4_4;	
-	Case Case4_5;	
-	Case Case5_1;	
-	Case Case5_2;	
-	Case Case5_3;	
-	Case Case5_4;	
-	Case Case5_5;	
 	
-	Case ListCase[5][5] = {{Case1_1,Case1_2,Case1_3,Case1_4,Case1_5},
-		{Case2_1,Case2_2,Case2_3,Case2_4,Case2_5},
-		{Case3_1,Case3_2,Case3_3,Case3_4,Case3_5},
-		{Case4_1,Case4_2,Case4_3,Case4_4,Case4_5},
-		{Case5_1,Case5_2,Case5_3,Case5_4,Case5_5}};
+	Case ListCase[5][5];
 	
 	for (int k=0; k<5;k++){
 		for(int l=0; l<5; l++){
@@ -97,79 +68,80 @@ int main(int argc, char *argv[]) {
 				x = event.button.x;
 				y = event.button.y;
 				for (int i =0; i<5; i++){
-                     			for (int j =0; j<5; j++){
+                    for (int j =0; j<5; j++){
 						if (x>ListCase[i][j].box1x && x<ListCase[i][j].box2x && y>ListCase[i][j].box1y && y<ListCase[i][j].box2y) {
+					
+	                        if (ListCase[i][j].on == -1) {
+	                            ListCase[i][j].on =1;
+	                               	CreateRectangle(renderer,ListCase[i][j].centrx,
+	                               		ListCase[i][j].centry,100,100,0,255,0,255,1);
+	                        }
+	                        else {
+	                           	ListCase[i][j].on =-1;
+	                        	    CreateRectangle(renderer,ListCase[i][j].centrx,
+	                            		ListCase[i][j].centry,100,100,255,0,0,255,1);
+	                        }
+	                                                                
+							if (i-1>=0) {
+								if (ListCase[i-1][j].on == -1) {				
+	                            	ListCase[i-1][j].on =1;
+									CreateRectangle(renderer,ListCase[i-1][j].centrx,
+	                        	   		ListCase[i-1][j].centry,100,100,0,255,0,255,1);
+								}
+								else {
+	                            	ListCase[i-1][j].on =-1;
+	                            	CreateRectangle(renderer,ListCase[i-1][j].centrx,
+	                                	ListCase[i-1][j].centry,100,100,255,0,0,255,1);
+								}
+							}
+							if (i+1<5) {
+								if (ListCase[i+1][j].on == -1) {               
+	                                ListCase[i+1][j].on =1;                                 
+	                                CreateRectangle(renderer,ListCase[i+1][j].centrx,
+	                                    ListCase[i+1][j].centry,100,100,0,255,0,255,1);
+	                        	}                                           
+	                            else {                                          
+	                                ListCase[i+1][j].on =-1;                 
+	                                CreateRectangle(renderer,ListCase[i+1][j].centrx,
+	                                ListCase[i+1][j].centry,100,100,255,0,0,255,1);
+	                            }                        
+							}
+							if (j-1>=0) {
+								if (ListCase[i][j-1].on == -1) {               
+	                                ListCase[i][j-1].on =1;                                 
+	                                CreateRectangle(renderer,ListCase[i][j-1].centrx,
+	                                ListCase[i][j-1].centry,100,100,0,255,0,255,1);
+	                            }                                           
+	                        	else {                                          
+	                        	    ListCase[i][j-1].on =-1;                 
+	                                CreateRectangle(renderer,ListCase[i][j-1].centrx,
+	                            	    ListCase[i][j-1].centry,100,100,255,0,0,255,1);
+	                        	}                        
+							}
+							if (j+1<5) {
+								if (ListCase[i][j+1].on == -1) {               
+	                                ListCase[i][j+1].on =1;                                 
+	                                CreateRectangle(renderer,ListCase[i][j+1].centrx,
+	                                ListCase[i][j+1].centry,100,100,0,255,0,255,1);
+	                            }                                           
+	                            else {                                          
+	                                ListCase[i][j+1].on =-1;                 
+	                                CreateRectangle(renderer,ListCase[i][j+1].centrx,
+	                                ListCase[i][j+1].centry,100,100,255,0,0,255,1);
+	                            }                        
+							}
 								
-                                                                if (ListCase[i][j].on == -1) {
-                                                                        ListCase[i][j].on =1;
-                                                                	CreateRectangle(renderer,ListCase[i][j].centrx,
-                                                                        	ListCase[i][j].centry,100,100,0,255,0,255,1);
-                                                                }
-                                                                else {
-                                                                	ListCase[i][j].on =-1;
-                                                                        CreateRectangle(renderer,ListCase[i][j].centrx,
-                                                                        ListCase[i][j].centry,100,100,255,0,0,255,1);
-                                                                }
-                                                                
-								if (i-1>=0) {
-									if (ListCase[i-1][j].on == -1) {				
-                                                        	       		ListCase[i-1][j].on =1;
-										CreateRectangle(renderer,ListCase[i-1][j].centrx,
-                                                        	        		ListCase[i-1][j].centry,100,100,0,255,0,255,1);
-									}
-									else {
-                                                                                ListCase[i-1][j].on =-1;
-                                                                                CreateRectangle(renderer,ListCase[i-1][j].centrx,
-                                                                                        ListCase[i-1][j].centry,100,100,255,0,0,255,1);
-									}
-								}
-								if (i+1<5) {
-									if (ListCase[i+1][j].on == -1) {               
-                                                                                ListCase[i+1][j].on =1;                                 
-                                                                                CreateRectangle(renderer,ListCase[i+1][j].centrx,
-                                                                                        ListCase[i+1][j].centry,100,100,0,255,0,255,1);
-                                                                        }                                           
-                                                                        else {                                          
-                                                                                ListCase[i+1][j].on =-1;                 
-                                                                                CreateRectangle(renderer,ListCase[i+1][j].centrx,
-                                                                                        ListCase[i+1][j].centry,100,100,255,0,0,255,1);
-                                                                        }                        
-								}
-								if (j-1>=0) {
-									if (ListCase[i][j-1].on == -1) {               
-                                                                                ListCase[i][j-1].on =1;                                 
-                                                                                CreateRectangle(renderer,ListCase[i][j-1].centrx,
-                                                                                        ListCase[i][j-1].centry,100,100,0,255,0,255,1);
-                                                                        }                                           
-                                                                        else {                                          
-                                                                                ListCase[i][j-1].on =-1;                 
-                                                                                CreateRectangle(renderer,ListCase[i][j-1].centrx,
-                                                                                        ListCase[i][j-1].centry,100,100,255,0,0,255,1);
-                                                                        }                        
-								}
-								if (j+1<5) {
-									if (ListCase[i][j+1].on == -1) {               
-                                                                                ListCase[i][j+1].on =1;                                 
-                                                                                CreateRectangle(renderer,ListCase[i][j+1].centrx,
-                                                                                        ListCase[i][j+1].centry,100,100,0,255,0,255,1);
-                                                                        }                                           
-                                                                        else {                                          
-                                                                                ListCase[i][j+1].on =-1;                 
-                                                                                CreateRectangle(renderer,ListCase[i][j+1].centrx,
-                                                                                        ListCase[i][j+1].centry,100,100,255,0,0,255,1);
-                                                                        }                        
-								}
-							
 							for(int m=0; m<5; m++) {
 								for(int n=0; n<5; n++) {
 									CreateRectangle(renderer,ListCase[m][n].centrx,
-                                                        		ListCase[m][n].centry,100,100,0,0,0,255,0);	
+	                            		ListCase[m][n].centry,100,100,0,0,0,255,0);	
 								}
 							}	
-                                			SDL_RenderPresent(renderer);
-						}
-                			}
-        			}
+                        	SDL_RenderPresent(renderer);
+                        }
+					}
+               	}
+    
 			}
 		}			
 	}
