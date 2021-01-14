@@ -99,11 +99,18 @@ int main(int argc, char *argv[]) {
 				for (int i =0; i<5; i++){
                      			for (int j =0; j<5; j++){
 						if (x>ListCase[i][j].box1x && x<ListCase[i][j].box2x && y>ListCase[i][j].box1y && y<ListCase[i][j].box2y) {
-							if (ListCase[i][j].on == -1) {
-								ListCase[i][j].on =1;
 								
-								CreateRectangle(renderer,ListCase[i][j].centrx,
-                                                        	        ListCase[i][j].centry,100,100,0,255,0,255,1);
+                                                                if (ListCase[i][j].on == -1) {
+                                                                        ListCase[i][j].on =1;
+                                                                	CreateRectangle(renderer,ListCase[i][j].centrx,
+                                                                        	ListCase[i][j].centry,100,100,0,255,0,255,1);
+                                                                }
+                                                                else {
+                                                                	ListCase[i][j].on =-1;
+                                                                        CreateRectangle(renderer,ListCase[i][j].centrx,
+                                                                        ListCase[i][j].centry,100,100,255,0,0,255,1);
+                                                                }
+                                                                
 								if (i-1>=0) {
 									if (ListCase[i-1][j].on == -1) {				
                                                         	       		ListCase[i-1][j].on =1;
@@ -152,7 +159,7 @@ int main(int argc, char *argv[]) {
                                                                                         ListCase[i][j+1].centry,100,100,255,0,0,255,1);
                                                                         }                        
 								}
-							}
+							
 							for(int m=0; m<5; m++) {
 								for(int n=0; n<5; n++) {
 									CreateRectangle(renderer,ListCase[m][n].centrx,
