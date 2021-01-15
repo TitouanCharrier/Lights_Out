@@ -55,6 +55,7 @@ int main(int argc, char *argv[]) {
 
 	int x;
 	int y;
+	int win;
 
 	SDL_Event event;
 	while (1){
@@ -67,8 +68,10 @@ int main(int argc, char *argv[]) {
 			if (event.button.button == SDL_BUTTON_LEFT) {
 				x = event.button.x;
 				y = event.button.y;
+				win = 0;
 				for (int i =0; i<5; i++){
                     for (int j =0; j<5; j++){
+
 						if (x>ListCase[i][j].box1x && x<ListCase[i][j].box2x && y>ListCase[i][j].box1y && y<ListCase[i][j].box2y) {
 					
 	                        if (ListCase[i][j].on == -1) {
@@ -141,10 +144,29 @@ int main(int argc, char *argv[]) {
                         }
 					}
                	}
-    
 			}
+			win = 0;
+			for (int i = 0; i<5; i++) {
+				for (int j = 0; j<5; j++) {
+
+					win += ListCase[i][j].on;
+					if (win == 25) {
+						goto LABEL;
+					}		
+				}		
+			} 
 		}			
 	}
+	LABEL:
+	for(int m=0; m<5; m++) {
+		for(int n=0; n<5; n++) {
+			CreateRectangle(renderer,ListCase[n][m].centrx,
+	    		ListCase[n][m].centry,100,100,255,88,0,255,1);
+	    	SDL_Delay(50);
+	    	SDL_RenderPresent(renderer);	
+		}
+	}
+	SDL_Delay(5000);	
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();	
 }
