@@ -1,6 +1,5 @@
 #include <SDL2/SDL.h>
 #include <math.h>
-#include <stdio.h>
 
 int RegulHollowPoly(SDL_Renderer *renderer, int nbrCote, int tailleCote, int centrx, int centry, int facing, int r, int g, int b, int a);
 
